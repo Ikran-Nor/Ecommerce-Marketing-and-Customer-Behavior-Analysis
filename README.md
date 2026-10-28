@@ -12,7 +12,7 @@ The objective was to transform raw data into meaningful business insights that s
 
 **Analysis techniques:** Data cleaning, exploratory data analysis (EDA), data merging, feature engineering, KPI calculations, and data visualization.
 
-[View Python Analysis](analysis.py) | [View Project Report]([Ecommerce%20marketing%20analysis.pdf)
+[View Python Analysis](analysis.py) | [View Project Report](Ecommerce%20marketing%20analysis.pdf)
 
 ---
 
