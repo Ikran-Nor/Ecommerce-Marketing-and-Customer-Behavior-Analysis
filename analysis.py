@@ -7,14 +7,20 @@ import seaborn as sns
 
 sns.set_theme(style="whitegrid")
 pd.set_option("display.max_columns", 40)
-DATA = Path("data")
 
-# Read the five CSV files into separate DataFrames.
-customers = pd.read_csv("C:/Users/hp/Documents/Marketing_Campaign_Analysis/data/customers.csv")
-transactions = pd.read_csv("C:/Users/hp/Documents/Marketing_Campaign_Analysis/data/transactions.csv")
-products = pd.read_csv("C:/Users/hp/Documents/Marketing_Campaign_Analysis/data/products.csv")
-events = pd.read_csv("C:/Users/hp/Documents/Marketing_Campaign_Analysis/data/events.csv")
-campaigns = pd.read_csv("C:/Users/hp/Documents/Marketing_Campaign_Analysis/data/campaigns.csv")
+# Find the folder containing this Python script
+BASE_DIR = Path(__file__).resolve().parent
+
+# Support datasets in a data folder or the project folder
+DATA_DIR = BASE_DIR / "data" if (BASE_DIR / "data").is_dir() else BASE_DIR
+
+# Load the five datasets
+customers = pd.read_csv(DATA_DIR / "customers.csv")
+transactions = pd.read_csv(DATA_DIR / "transactions.csv")
+products = pd.read_csv(DATA_DIR / "products.csv")
+events = pd.read_csv(DATA_DIR / "events.csv")
+campaigns = pd.read_csv(DATA_DIR / "campaigns.csv")
+
 
 # Keep the names and their DataFrames together in one dictionary.
 for name, df in{"Customers": customers, "Transactions": transactions, "Events": events,
