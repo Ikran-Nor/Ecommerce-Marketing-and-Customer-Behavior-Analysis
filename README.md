@@ -1,229 +1,217 @@
-# Ecommerce-Marketing-and-Customer-Behavior-Analysis Using Python
-## 1. Project overview
+# E-Commerce Marketing & Customer Behavior Analysis Using Python
 
-This project explores an e-commerce dataset to understand customers, sales, products, website activity, and marketing campaigns. I used Python to clean and connect five datasets, calculate business metrics, and create charts that help explain the results.
+## Project Overview
 
-The goal is to turn raw data into useful information that an e-commerce business can use to make better decisions.
+This project analyzes e-commerce sales, customer behavior, product performance, website activity, and marketing campaigns using Python.
 
-## 2. Business problem
+I worked with five related datasets containing 100,000 customers, 103,127 transactions, and 2 million website events.
 
-An online business collects a lot of information about purchases, customers, products, website visits, and marketing campaigns. However, it can be difficult to understand what this information means when it is stored in separate files.
+The objective was to transform raw data into meaningful business insights that support customer retention, marketing decisions, and sales performance improvement.
 
-The business needs to understand:
+**Tools:** Python, Pandas, NumPy, Matplotlib, Seaborn
 
-- Which customers and products contribute the most to sales?
-- How do customers interact with the website?
-- Which marketing channels are linked to purchases and revenue?
-- How do refunds, discounts, and data-quality problems affect the results?
+**Analysis techniques:** Data cleaning, exploratory data analysis (EDA), data merging, feature engineering, KPI calculations, and data visualization.
 
-**Main business question:** How can customer, product, transaction, website, and campaign data help the business understand sales performance and identify opportunities for improvement?
+[View Python Analysis](analysis.py) | [View Project Report](Ecommerce%20marketing%20analysis.pdf)
 
-## 3. Project objectives
+---
 
-1. Prepare the datasets for reliable analysis.
-2. Measure sales, revenue, refunds, and customer activity.
-3. Compare purchasing behavior by customer group.
-4. Find the product categories and brands with the highest recorded revenue.
-5. Explore website events and traffic sources.
-6. Compare revenue associated with different marketing campaigns.
-7. Show changes in recorded revenue over time.
-8. Present findings and practical recommendations, while explaining data limitations.
+## Business Problem
 
-## 4. Datasets
+An e-commerce business collects information about its customers, purchases, products, website activity, and marketing campaigns.
 
-The project uses five CSV files.
+However, this information is stored across separate datasets, making it difficult to understand overall business performance.
 
-| Dataset | Rows | What it contains |
+This project investigates four main questions:
+
+1. Which customers and products generate the most recorded revenue?
+2. How do purchasing patterns differ across customer segments?
+3. Which marketing channels are associated with sales performance?
+4. What opportunities exist to improve customer retention, revenue, and data quality?
+
+## Dataset Overview
+
+The analysis combines five datasets.
+
+| Dataset | Records | Description |
 |---|---:|---|
-| `customers.csv` | 100,000 | Customer age, country, gender, loyalty tier, signup date, and acquisition channel |
-| `transactions.csv` | 103,127 | Purchases, product IDs, quantities, discounts, recorded revenue, and refunds |
-| `events.csv` | 2,000,000 | Website views, clicks, carts, purchases, traffic sources, devices, and sessions |
-| `products.csv` | 2,000 | Product category, brand, base price, launch date, and premium status |
-| `campaigns.csv` | 50 | Marketing channel, objective, dates, target segment, and expected uplift |
+| customers.csv | 100,000 | Customer demographics, loyalty tiers, and acquisition channels |
+| transactions.csv | 103,127 | Purchases, discounts, revenue, and refunds |
+| products.csv | 2,000 | Product categories, brands, and pricing |
+| events.csv | 2,000,000 | Website events, traffic sources, and sessions |
+| campaigns.csv | 50 | Marketing channels, campaign objectives, and target segments |
 
-`transactions` is the main table for sales analysis. `events` is the main table for website activity. I used customer, product, and campaign information to add context to the transactions.
+### Dataset Availability
 
-## 5. Questions explored
+Four datasets are included in this repository: `customers.csv`, `transactions.csv`, `products.csv`, and `campaigns.csv`.
 
-### Customer analysis
+The full `events.csv` dataset was used during the analysis but is not uploaded because of its large size.
 
-- Who are the customers by age, country, and gender?
-- Which loyalty tiers contribute the most recorded revenue?
-- Which loyalty tier has higher revenue per purchasing customer?
-- Which customer acquisition channels are associated with the most revenue?
+GitHub may also be unable to display large CSV files as interactive tables. The files can still be downloaded using GitHub's raw-file download option.
 
-### Product and purchasing analysis
+**Reproducibility note:** Running the complete Python analysis requires access to all five datasets, including the full `events.csv` file.
 
-- Which product categories generate the most recorded revenue?
-- Which categories sell the most known-revenue units?
-- How do premium and non-premium products compare?
-- Which categories have the highest refund rates?
-- How do transaction values differ by discount level?
+## Data Analysis Process
 
-### Digital behavior analysis
+### 1. Data Inspection
 
-- Which website events happen most often?
-- Which traffic sources have the most recorded events?
-- How does the mix of events differ by traffic source?
-- What can website activity tell us about customer behavior?
+- Examined dataset structures, column names, and data types.
+- Identified missing values and duplicate records.
+- Reviewed categorical and numerical variables.
+- Checked relationships between customer, transaction, product, and campaign IDs.
 
-### Marketing analysis
+### 2. Data Cleaning
 
-- How much recorded revenue is linked to a campaign ID?
-- Which campaign channels, objectives, and target segments are associated with the most transactions and revenue?
-- How does monthly and yearly recorded revenue change?
+- Converted date columns into datetime formats.
+- Standardized categorical values.
+- Investigated missing product IDs and revenue.
+- Checked refunds and negative revenue values.
+- Identified inconsistencies between transaction dates and customer signup dates.
+- Preserved missing values when their correct replacements could not be established.
 
-## 6. My analysis process
+### 3. Data Transformation
 
-### Step 1: Understand the business and data
+- Created customer age groups.
+- Extracted months, quarters, years, and weekdays.
+- Calculated discount amounts and signed transaction quantities.
+- Classified premium and non-premium products.
+- Added campaign attribution indicators.
+- Merged related datasets using Pandas.
 
-I defined the business questions and reviewed the five datasets to understand how they relate to each other.
+### 4. Exploratory Data Analysis
 
-### Step 2: Load the datasets
+Analyzed:
 
-I used `pd.read_csv()` to load each CSV file into a Pandas DataFrame.
+- Customer demographics and loyalty tiers
+- Product and category performance
+- Revenue and refund trends
+- Customer acquisition channels
+- Website events and traffic sources
+- Marketing campaign associations
+- Monthly and yearly sales performance
 
-### Step 3: Inspect the datasets
+### 5. Data Visualization
 
-I checked the number of rows and columns, viewed sample records, and reviewed column types and summary statistics using `shape`, `head()`, `info()`, and `describe()`.
+Used Matplotlib and Seaborn to create:
 
-### Step 4: Check and prepare data quality
+- Revenue trend charts
+- Product category comparisons
+- Campaign revenue distribution charts
+- Transaction value histograms
+- Customer loyalty boxplots
+- Website event heatmaps
+- Refund rate comparisons
+- Discount analysis scatter plots
 
-I checked for:
+## Key Performance Indicators
 
-- Missing values and duplicate records.
-- Incorrect data types and inconsistent text categories.
-- Missing or unknown product IDs and campaign IDs.
-- Negative revenue values and refund flags.
-- Events or transactions dated before the recorded customer signup date.
-
-I converted date columns to datetime values, made category names consistent, and kept missing device information as **`unknown`** instead of guessing a device. I did not automatically delete records with missing revenue or product IDs.
-
-### Step 5: Create useful new columns
-
-I created fields to support the analysis, including:
-
-- Customer age groups.
-- Year, month, quarter, and weekday.
-- Campaign duration.
-- Product premium status and campaign attribution status.
-- Revenue before discount and discount amount.
-- Signed units to account for refunded items.
-
-### Step 6: Join related datasets
-
-I used Pandas `merge()` to connect transactions with product, customer, and campaign details. This allowed me to compare sales across customer groups, product categories, and marketing campaigns.
-
-### Step 7: Calculate business metrics
-
-I used `groupby()` and `agg()` to calculate transactions, distinct customers, recorded revenue, unit totals, refunds, refund rates, and average transaction values.
-
-I also calculated month-over-month (MoM) and year-over-year (YoY) revenue changes using `shift()` and `pct_change()` after sorting dates in order.
-
-### Step 8: Explore and visualize the data
-
-I created line charts, bar charts, a donut chart, histogram, boxplot, heatmap, and scatter plot to communicate the results.
-
-## 7. Key findings
-
-### Overall sales performance
-
-| Metric | Result |
+| KPI | Result |
 |---|---:|
-| Transactions | 103,127 |
+| Total transactions | 103,127 |
 | Registered customers | 100,000 |
 | Customers with transactions | 64,035 |
 | Recorded net revenue | 8,373,966.36 |
 | Refunded transactions | 3,029 |
 | Refund rate | 2.94% |
-| Average value of completed, non-refunded transactions with known revenue | 95.92 |
+| Average completed transaction value (known revenue) | 95.92 |
 
-About **64%** of registered customers appear in the transaction data. The remaining customers have no recorded transaction in this dataset. Revenue amounts are shown in **dataset units** because the source does not confirm a currency.
+Revenue is expressed in dataset units because the source does not specify a currency. Transactions with missing revenue are excluded from recorded revenue totals.
 
-**Important:** Recorded revenue does not include transactions with missing revenue, so it is not the complete revenue total for every transaction.
+## Key Business Findings
 
-### Customer findings
+### Customer Behavior
 
-- **Bronze** customers generated the most total recorded revenue (about **4.48 million**), mainly because this tier includes more purchasing customers.
-- **Gold** customers had the highest recorded revenue per purchasing customer in the loyalty comparison (about **146.48**). This shows why average customer value is useful alongside total revenue.
-- The **United States** contributed the most recorded revenue by customer country (about **2.95 million**), followed by India (about **1.68 million**).
-- Customers aged **35-44** contributed the most recorded revenue (about **2.97 million**), closely followed by customers aged **25-34** (about **2.79 million**).
-- **Organic** acquisition was linked to the highest recorded revenue (about **2.57 million**), followed by **Paid Search** (about **2.50 million**).
+- Bronze loyalty customers generated approximately 4.48 million in recorded revenue, the highest total among loyalty tiers.
+- Gold customers had the highest recorded revenue per purchasing customer, approximately 146.48.
+- Customers aged 35–44 contributed the most recorded revenue.
+- Organic acquisition was associated with approximately 2.57 million in recorded revenue.
 
-### Product findings
+**Business insight:** Total revenue and revenue per customer provide different perspectives on customer value. Both should be considered when designing retention strategies.
 
-- **Electronics** was the largest category by recorded revenue (about **3.45 million**), followed by **Home** (about **2.00 million**).
-- **Sports** had the highest recorded category refund rate (**3.24%**), followed by **Beauty** (**3.10%**).
-- **Premium products** were linked to about **6.45 million** in recorded revenue, compared with about **1.92 million** for non-premium products. Their average transaction value was also higher, but that does not mean premium status itself caused higher spending.
-- The average recorded transaction value was lower at higher discount levels in this dataset (about **99.62** with no discount versus **79.34** with a 20% discount). This comparison alone does not prove that discounts caused the difference.
+### Product Performance
 
-### Digital behavior findings
+- Electronics generated approximately 3.45 million in recorded revenue, the highest among product categories.
+- Home followed with approximately 2.00 million.
+- Sports had the highest recorded category refund rate at 3.24%.
+- Premium products generated more recorded revenue than non-premium products.
 
-- The dataset contains **2 million website event records** and **633,462 distinct session IDs**.
-- **Views** were the most common event (about **52.18%** of all events), followed by **clicks** (about **18.95%**) and **add-to-cart events** (about **14.22%**).
-- **Purchase events** accounted for about **5.16%** of event records. This is **not a website conversion rate**, because one session can contain several events.
-- The event analysis describes website activity but does not establish a reliable step-by-step conversion funnel.
+**Business insight:** The company should monitor high-revenue categories while investigating product returns and customer satisfaction.
 
-### Campaign findings
+### Website Behavior
 
-- **82,172 transactions (79.68%)** had an associated campaign ID.
-- These campaign-associated transactions represented about **6.68 million** in recorded revenue, approximately **79.82%** of total recorded revenue.
-- The **Affiliate** campaign channel was associated with the most recorded revenue (about **1.61 million**), followed by **Paid Search** (about **1.53 million**).
-- **Reactivation** was the campaign objective associated with the most recorded revenue (about **1.96 million**).
-- Campaigns targeting **New Customers** had the highest total associated revenue among the recorded target segments (about **1.70 million**).
+- The dataset contains 2 million website events across 633,462 distinct sessions.
+- Views represented approximately 52.18% of recorded events.
+- Clicks represented approximately 18.95%.
+- Add-to-cart events represented approximately 14.22%.
 
-**Campaign attribution is not the same as campaign impact.** These results show which transactions are linked to campaigns, not how many extra purchases the campaigns caused. The dataset does not support a confirmed return-on-ad-spend or causal uplift calculation.
+**Business insight:** Website activity provides useful engagement information, but event percentages cannot be interpreted as conversion rates without appropriate session-level analysis.
 
-### Revenue trends
+### Marketing Campaigns
 
-| Year | Recorded revenue | Change from previous year |
+- Approximately 79.68% of transactions were associated with a campaign ID.
+- Campaign-associated transactions represented approximately 6.68 million in recorded revenue.
+- Affiliate was associated with the highest recorded campaign-channel revenue, approximately 1.61 million.
+- Reactivation campaigns were associated with the highest recorded revenue among campaign objectives.
+
+**Business insight:** These results identify important campaign associations, but they do not establish that campaigns caused additional sales.
+
+### Revenue Trends
+
+| Year | Recorded Revenue | Year-over-Year Change |
 |---|---:|---:|
-| 2021 | 2,817,199.32 | Not available |
+| 2021 | 2,817,199.32 | N/A |
 | 2022 | 2,785,927.47 | -1.11% |
 | 2023 | 2,770,839.57 | -0.54% |
 
-Recorded revenue decreased slightly across the three years in the dataset. This trend should be monitored, but missing revenue and data-quality issues should be considered before drawing strong conclusions.
+Recorded revenue declined slightly during the analyzed period.
 
-## 8. Data quality findings and limitations
+## Data Quality and Limitations
 
-Data quality was an important part of this project.
+The analysis identified several important data-quality concerns:
 
-- **10,449 transactions (10.13%)** are missing both product ID and recorded revenue. Among them, **10,124** are not flagged as refunds and **325** are flagged as refunds.
-- **200,371 website events (10.02%)** have no product ID. Many are bounce events, where a product ID may not be needed.
-- **40,300 events (2.015%)** have no device type. I labelled these as `unknown` to keep the records without making assumptions.
-- **2,704 transactions** have negative recorded revenue, and all are flagged as refunds. This is consistent with the dataset's refund convention.
-- Many transaction and event timestamps appear before the corresponding customer signup dates. This may be a data-generation or recording issue and needs further investigation.
-- Event counts cannot be treated as unique visitor counts or conversion rates.
-- Marketing campaign association cannot be treated as proof of additional revenue caused by marketing.
+- 10,449 transactions were missing both product IDs and recorded revenue.
+- 200,371 website events had missing product IDs.
+- 40,300 website events had missing device information.
+- Some transactions and website events were dated before their associated customers' signup dates.
+- Missing revenue limits the completeness of financial totals.
+- Campaign association does not establish causal marketing impact.
 
-These limitations mean the findings are best used for **descriptive analysis** and for identifying questions that need further investigation.
+These findings highlight the importance of validating data and clearly communicating analytical limitations.
 
-## 9. Recommendations
+## Business Recommendations
 
-Based on these results, I would recommend that an e-commerce business:
+Based on the analysis, I recommend:
 
-1. **Improve sales data quality.** Investigate why product IDs and revenue are missing from some transactions before using the data for financial reporting.
-2. **Support valuable customer groups.** Review retention and loyalty offers for customers who spend more per person, while also supporting the larger customer groups that generate strong total revenue.
-3. **Monitor important product categories.** Keep track of Electronics and Home because they contribute the most recorded revenue. Review customer feedback and return reasons for Sports and Beauty, which have higher refund rates.
-4. **Review digital marketing performance.** Study Affiliate, Paid Search, and Reactivation campaigns in more detail. Use campaign cost information and a suitable comparison group before claiming that campaigns increased sales.
-5. **Investigate the revenue decline.** Review monthly patterns, product mix, discounts, and refunds to understand why recorded revenue decreased slightly from 2021 to 2023.
-6. **Improve website measurement.** Track visitors and sessions consistently so the business can calculate proper conversion rates and understand where customers leave the purchasing journey.
-7. **Investigate signup-date problems.** Check why many events and transactions appear before customer signup dates, instead of changing or removing them without evidence.
+1. **Improve data quality:** Investigate missing revenue and product information to strengthen reporting reliability.
+2. **Strengthen customer retention:** Develop targeted loyalty strategies informed by customer value and purchasing behavior.
+3. **Monitor product performance:** Support high-revenue categories while investigating refund patterns.
+4. **Evaluate marketing effectiveness:** Examine campaign costs and use appropriate comparison methods before assessing campaign impact.
+5. **Investigate revenue trends:** Review product mix, discounts, purchasing patterns, and refunds to understand declining recorded revenue.
+6. **Improve website measurement:** Develop reliable session-level metrics to better understand the customer purchasing journey.
 
-## 10. Conclusion
+## Skills Demonstrated
 
-This project helped me turn five separate e-commerce datasets into a clearer picture of customers, products, sales, digital behavior, and marketing activities.
+- Python programming for data analysis
+- Pandas DataFrames and data manipulation
+- Data cleaning and validation
+- Merging multiple datasets
+- Exploratory data analysis
+- Feature engineering
+- Descriptive statistics
+- Business KPI calculations
+- Time-series comparisons
+- Matplotlib and Seaborn visualizations
+- Business insight generation
+- Data storytelling and reporting
 
-I found that Electronics contributed the most recorded revenue among product categories, Bronze customers contributed the most total revenue among loyalty tiers, and Gold customers showed the highest revenue per purchasing customer. I also found that many transactions were linked to marketing campaigns and that recorded annual revenue decreased slightly during the period studied.
+## Conclusion
 
-The analysis also showed why **data quality matters**. Missing revenue, incomplete product IDs, and unusual signup dates limit what the business can conclude. My main lesson from this project is that good data analysis requires not only calculations and charts, but also checking the data and explaining what the results can and cannot tell us.
+This project demonstrates my ability to use Python to investigate business problems, prepare and analyze multiple datasets, calculate performance metrics, and communicate findings.
 
-## 11. Skills demonstrated
+The analysis identified important patterns in customer behavior, product performance, marketing associations, and revenue trends.
 
-- Loading and inspecting CSV datasets with Pandas.
-- Cleaning missing values and standardizing data types and categories.
-- Joining datasets and creating new analytical columns.
-- Using `groupby()`, `agg()`, `nunique()`, `shift()`, and `pct_change()`.
-- Calculating business KPIs and comparing customer and product groups.
-- Making beginner-friendly visualizations with Matplotlib and Seaborn.
-- Presenting findings, limitations, and recommendations in simple business language.
+It also demonstrated why reliable data quality and careful interpretation are essential for making informed business decisions.
+
+**Author:** Ikran Nor Ali
+
+**Focus:** Data Analytics | Python | SQL | Power BI
