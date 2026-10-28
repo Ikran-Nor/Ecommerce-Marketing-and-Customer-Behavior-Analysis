@@ -8,11 +8,8 @@ import seaborn as sns
 sns.set_theme(style="whitegrid")
 pd.set_option("display.max_columns", 40)
 
-# Find the folder containing this Python script
-BASE_DIR = Path(__file__).resolve().parent
-
-# Support datasets in a data folder or the project folder
-DATA_DIR = BASE_DIR / "data" if (BASE_DIR / "data").is_dir() else BASE_DIR
+# Location of the datasets
+DATA_DIR = Path(r"C:\Users\hp\Documents\Marketing_Campaign_Analysis\data")
 
 # Load the five datasets
 customers = pd.read_csv(DATA_DIR / "customers.csv")
@@ -20,6 +17,8 @@ transactions = pd.read_csv(DATA_DIR / "transactions.csv")
 products = pd.read_csv(DATA_DIR / "products.csv")
 events = pd.read_csv(DATA_DIR / "events.csv")
 campaigns = pd.read_csv(DATA_DIR / "campaigns.csv")
+
+print("All five datasets loaded successfully!")
 
 
 # Keep the names and their DataFrames together in one dictionary.
